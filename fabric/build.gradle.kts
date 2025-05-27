@@ -8,6 +8,8 @@ plugins {
 dependencies {
     minecraft(libs.minecraft)
     mappings(libs.yarn)
+
+    include(libs.bundles.yacla)
 }
 
 java {

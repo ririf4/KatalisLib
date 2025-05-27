@@ -30,3 +30,6 @@ yacla-core = { group = "net.ririfa", name = "yacla-core", version.ref = "yacla-c
 yacla-yaml = { group = "net.ririfa", name = "yacla-yaml", version.ref = "yacla-yaml" }
 yacla-json = { group = "net.ririfa", name = "yacla-json", version.ref = "yacla-json" }
 yacla-ext-db = { group = "net.ririfa", name = "yacla-ext-db", version.ref = "yacla-ext-db" }
+
+[bundles]
+yacla = ["yacla-core", "yacla-yaml", "yacla-json", "yacla-ext-db"]
