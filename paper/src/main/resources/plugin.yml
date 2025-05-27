@@ -1,0 +1,6 @@
+name: KatalisLib
+main: net.ririfa.katalis.paper.KatalisLibPaper
+version: ${version}
+author: RiriFa
+api-version: 1.21
+description: Contains a set of libraries written by me, packaged into one JAR for easy integration.

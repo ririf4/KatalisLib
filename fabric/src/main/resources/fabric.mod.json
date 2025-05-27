@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "katalis-lib-fabric",
+  "name": "Katalis Lib Fabric",
+  "version": "${version}",
+  "description": "Contains a set of libraries written by me, packaged into one JAR for easy integration.",
+  "authors": [
+    "RiriFa"
+  ],
+  "contact": {
+    "sources": "https://github.com/ririf4/KatalisLib",
+    "issues": "https://github.com/ririf4/KatalisLib/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/katalis-lib-fabric/icon.png",
+  "environment": "*"
+}
