@@ -3,12 +3,14 @@ import java.net.URI
 
 plugins {
     alias(libs.plugins.kotlin)
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     `maven-publish`
 }
 
 allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "maven-publish")
+    apply(plugin = "com.github.johnrengelman.shadow")
 
     group = "net.ririfa"
     version = "1.0.0"

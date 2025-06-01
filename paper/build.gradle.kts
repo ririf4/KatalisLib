@@ -9,7 +9,8 @@ plugins {
 dependencies {
     compileOnly(libs.paper)
 
-    paperLibrary(libs.yacla)
+    paperLibrary(libs.bundles.yacla)
+    paperLibrary(libs.bundles.langMan)
 }
 
 java {

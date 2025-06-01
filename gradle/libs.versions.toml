@@ -9,10 +9,15 @@ paper = "1.21.5-R0.1-SNAPSHOT"
 
 yarn = "1.21.5+build.1"
 
-yacla-core = "1.1.0+beta.1"
+yacla-core = "1.1.0+beta.4"
 yacla-yaml = "1.1.0+beta.1"
 yacla-json = "1.1.0+beta.1"
-yacla-ext-db = "1.1.0+beta.1"
+yacla-ext-db = "1.1.0+beta.5"
+
+langMan-core = "2.0.0+beta.3"
+langMan-yaml = "2.0.0+beta.1"
+
+cask = "0.0.1+alpha.2"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -31,5 +36,11 @@ yacla-yaml = { group = "net.ririfa", name = "yacla-yaml", version.ref = "yacla-y
 yacla-json = { group = "net.ririfa", name = "yacla-json", version.ref = "yacla-json" }
 yacla-ext-db = { group = "net.ririfa", name = "yacla-ext-db", version.ref = "yacla-ext-db" }
 
+langMan-core = { group = "net.ririfa", name = "langman-core", version.ref = "langMan-core" }
+langMan-yaml = { group = "net.ririfa", name = "langman-ext.yaml", version.ref = "langMan-yaml" }
+
+cask = { group = "net.ririfa", name = "cask", version.ref = "cask" }
+
 [bundles]
 yacla = ["yacla-core", "yacla-yaml", "yacla-json", "yacla-ext-db"]
+langMan = ["langMan-core", "langMan-yaml"]
