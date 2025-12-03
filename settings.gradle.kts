@@ -8,8 +8,13 @@ pluginManagement {
 
 rootProject.name = "katalis"
 
-include("fabric")
-project(":fabric").name = "katalis-fabric"
+fun safeInclude(name: String, path: String) {
+    val dir = file(path)
+    if (dir.exists()) {
+        include(name)
+        project(":$name").projectDir = dir
+    }
+}
 
-include(":paper")
-project(":paper").name = "katalis-paper"
+safeInclude("katalis-paper", "katalis/paper")
+safeInclude("katalis-fabric", "katalis/fabric")

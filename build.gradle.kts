@@ -1,19 +1,26 @@
+@file:Suppress("PropertyName")
+
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.net.HttpURLConnection
 import java.net.URI
 
 plugins {
     alias(libs.plugins.kotlin)
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    alias(libs.plugins.shadow)
     `maven-publish`
 }
 
-allprojects {
-    apply(plugin = "kotlin")
-    apply(plugin = "maven-publish")
-    apply(plugin = "com.github.johnrengelman.shadow")
+val KATALIS_PAPER = "katalis-paper"
+val KATALIS_FABRIC = "katalis-fabric"
 
+val KATALIS_PAPER_VERSION = "1.0.0"
+val KATALIS_FABRIC_VERSION = "1.0.0"
+
+
+allprojects {
     group = "net.ririfa"
-    version = "1.0.0"
 
     repositories {
         mavenCentral()
@@ -24,6 +31,57 @@ allprojects {
 }
 
 subprojects {
+    apply(plugin = "kotlin")
+    apply(plugin = "maven-publish")
+    apply(plugin = "com.gradleup.shadow")
+
+    afterEvaluate {
+        dependencies {
+            implementation(libs.yacla.core)
+            implementation(libs.yacla.yaml)
+            implementation(libs.yacla.json)
+
+            implementation(libs.langman.core)
+            implementation(libs.langman.yaml)
+
+            implementation(libs.cask)
+        }
+    }
+
+    when (name) {
+        KATALIS_PAPER -> version = KATALIS_PAPER_VERSION
+        KATALIS_FABRIC -> version = KATALIS_FABRIC_VERSION
+    }
+
+    java { withSourcesJar() }
+
+    kotlin {
+        jvmToolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    }
+
+    tasks.shadowJar {
+        archiveClassifier.set("all")
+
+        relocate("tools.jackson", "net.ririfa.yacla.libs.jackson")
+        relocate("org.snakeyaml", "net.ririfa.yacla.libs.snakeyaml")
+
+        dependencies {
+            exclude(dependency("org.jetbrains.kotlin:.*"))
+            exclude(dependency("org.jetbrains.kotlinx:.*"))
+            exclude(dependency("org.jetbrains:annotations"))
+        }
+
+        exclude("META-INF/*.kotlin_module")
+        exclude("META-INF/services/*kotlin*")
+        exclude("META-INF/*kotlin*")
+    }
+
+    tasks.withType<JavaCompile>().configureEach { options.release.set(21) }
+
+    tasks.withType<KotlinCompile>().configureEach { compilerOptions { jvmTarget.set(JvmTarget.JVM_21) } }
+
     tasks.withType<PublishToMavenRepository>().configureEach {
         onlyIf {
             val artifactId = project.name
@@ -62,11 +120,11 @@ subprojects {
                 artifactId = project.name
                 version = project.version.toString()
 
-                from(components["java"])
+                from(components["shadow"])
 
                 pom {
                     name.set(project.name)
-                    description.set("")
+                    description.set("Contains a set of libraries written by me, packaged into one JAR for easy integration.")
                     url.set("https://github.com/ririf4/KatalisLib")
                     licenses {
                         license {
