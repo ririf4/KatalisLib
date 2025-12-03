@@ -37,14 +37,16 @@ subprojects {
 
     afterEvaluate {
         dependencies {
-            implementation(libs.yacla.core)
-            implementation(libs.yacla.yaml)
-            implementation(libs.yacla.json)
+            runtimeOnly("${libs.yacla.core.get()}:all")
+            runtimeOnly("${libs.yacla.yaml.get()}:all")
+            runtimeOnly("${libs.yacla.json.get()}:all")
 
-            implementation(libs.langman.core)
-            implementation(libs.langman.yaml)
+            runtimeOnly("${libs.langman.core.get()}:fat")
+            runtimeOnly("${libs.langman.yaml.get()}:fat")
 
-            implementation(libs.cask)
+            runtimeOnly(libs.cask)
+
+            runtimeOnly("${libs.beacon.get()}:all")
         }
     }
 

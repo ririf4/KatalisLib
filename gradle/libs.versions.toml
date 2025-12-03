@@ -14,7 +14,9 @@ yacla-json = "3.0.0"
 langMan-core = "2.0.0"
 langMan-yaml = "2.0.0"
 
-cask = "0.0.1+alpha.3"
+cask = "1.0.0"
+
+beacon = "1.5.4"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -34,5 +36,4 @@ yacla-json = { group = "net.ririfa", name = "yacla-json", version.ref = "yacla-j
 langman-core = { group = "net.ririfa", name = "langman-core", version.ref = "langMan-core" }
 langman-yaml = { group = "net.ririfa", name = "langman-ext.yaml", version.ref = "langMan-yaml" }
 cask = { group = "net.ririfa", name = "cask", version.ref = "cask" }
-
-[bundles]
+beacon = { group = "net.ririfa", name = "beacon", version.ref = "beacon" }
